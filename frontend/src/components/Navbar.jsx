@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="shadow-md px-6 py-4 mb-6">
+    <div className="shadow-md px-6 py-4 bg-white">
       <div className="max-w-7xl flex justify-between items-center mx-auto">
         <p
           className="font-semibold text-2xl flex justify-center items-center cursor-pointer"

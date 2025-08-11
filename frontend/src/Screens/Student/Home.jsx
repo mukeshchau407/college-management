@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import { toast, Toaster } from "react-hot-toast";
 import Notice from "../Notice";
@@ -11,26 +11,45 @@ import Profile from "./Profile";
 import Exam from "../Exam";
 import ViewMarks from "./ViewMarks";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  FiHome,
+  FiBook,
+  FiBell,
+  FiAward,
+  FiCalendar,
+  FiFileText,
+} from "react-icons/fi";
 
 const MENU_ITEMS = [
-  { id: "home", label: "Home", component: null },
-  { id: "timetable", label: "Timetable", component: Timetable },
-  { id: "material", label: "Material", component: Material },
-  { id: "notice", label: "Notice", component: Notice },
-  { id: "exam", label: "Exam", component: Exam },
-  { id: "marks", label: "Marks", component: ViewMarks },
+  { id: "home", label: "Home", component: null, icon: <FiHome /> },
+  {
+    id: "timetable",
+    label: "Timetable",
+    component: Timetable,
+    icon: <FiCalendar />,
+  },
+  {
+    id: "material",
+    label: "Material",
+    component: Material,
+    icon: <FiFileText />,
+  },
+  { id: "notice", label: "Notice", component: Notice, icon: <FiBell /> },
+  { id: "exam", label: "Exam", component: Exam, icon: <FiBook /> },
+  { id: "marks", label: "Marks", component: ViewMarks, icon: <FiAward /> },
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedMenu, setSelectedMenu] = useState("home");
   const [profileData, setProfileData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("userToken");
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  const fetchUserDetails = async () => {
+  const fetchUserDetails = useCallback(async () => {
     setIsLoading(true);
     try {
       toast.loading("Loading user details...");
@@ -54,23 +73,30 @@ const Home = () => {
       setIsLoading(false);
       toast.dismiss();
     }
-  };
+  }, [userToken, dispatch]);
 
   useEffect(() => {
     fetchUserDetails();
-  }, [dispatch, userToken]);
+  }, [fetchUserDetails]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const pathMenuId = urlParams.get("page") || "home";
+    const validMenu = MENU_ITEMS.find((item) => item.id === pathMenuId);
+    setSelectedMenu(validMenu ? validMenu.id : "home");
+  }, [location.search]);
 
   const getMenuItemClass = (menuId) => {
-    const isSelected = selectedMenu.toLowerCase() === menuId.toLowerCase();
+    const isSelected = selectedMenu === menuId;
     return `
-      text-center px-6 py-3 cursor-pointer
+      flex items-center px-4 py-3 cursor-pointer
       font-medium text-sm w-full
       rounded-md
       transition-all duration-300 ease-in-out
       ${
         isSelected
-          ? "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg transform -translate-y-1"
-          : "bg-blue-50 text-blue-700 hover:bg-blue-100"
+          ? "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg"
+          : "text-gray-700 hover:bg-blue-50"
       }
     `;
   };
@@ -82,23 +108,16 @@ const Home = () => {
       );
     }
 
+    const MenuItem = MENU_ITEMS.find(
+      (item) => item.id === selectedMenu
+    )?.component;
+
     if (selectedMenu === "home" && profileData) {
       return <Profile profileData={profileData} />;
     }
 
-    const MenuItem = MENU_ITEMS.find(
-      (item) => item.label.toLowerCase() === selectedMenu.toLowerCase()
-    )?.component;
-
     return MenuItem && <MenuItem />;
   };
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const pathMenuId = urlParams.get("page") || "home";
-    const validMenu = MENU_ITEMS.find((item) => item.id === pathMenuId);
-    setSelectedMenu(validMenu ? validMenu.id : "home");
-  }, [location.pathname]);
 
   const handleMenuClick = (menuId) => {
     setSelectedMenu(menuId);
@@ -108,20 +127,34 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto">
-        <ul className="flex justify-evenly items-center gap-10 w-full mx-auto my-8">
-          {MENU_ITEMS.map((item) => (
-            <li
-              key={item.id}
-              className={getMenuItemClass(item.id)}
-              onClick={() => handleMenuClick(item.id)}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <div
+          className={`${
+            sidebarOpen ? "w-64" : "w-20"
+          } bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col`}
+        >
+          <div className="flex-1 overflow-y-auto py-2">
+            {MENU_ITEMS.map((item) => (
+              <div
+                key={item.id}
+                className={getMenuItemClass(item.id)}
+                onClick={() => handleMenuClick(item.id)}
+                title={!sidebarOpen ? item.label : ""}
+              >
+                <span className={`${sidebarOpen ? "mx-3" : "mx-auto"} text-lg`}>
+                  {item.icon}
+                </span>
+                {sidebarOpen && <span>{item.label}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
 
-        {renderContent()}
+        {/* Main Content */}
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+          {renderContent()}
+        </div>
       </div>
       <Toaster position="bottom-center" />
     </>

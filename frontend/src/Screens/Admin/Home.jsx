@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Navbar from "../../components/Navbar";
 import { toast, Toaster } from "react-hot-toast";
 import Notice from "../Notice";
@@ -13,16 +13,26 @@ import axiosWrapper from "../../utils/AxiosWrapper";
 import Profile from "./Profile";
 import Exam from "../Exam";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  FiHome,
+  FiUsers,
+  FiBook,
+  FiBell,
+  FiAward,
+  FiBookmark,
+  FiUser,
+  FiSettings,
+} from "react-icons/fi";
 
 const MENU_ITEMS = [
-  { id: "home", label: "Home", component: Profile },
-  { id: "student", label: "Student", component: Student },
-  { id: "faculty", label: "Faculty", component: Faculty },
-  { id: "branch", label: "Branch", component: Branch },
-  { id: "notice", label: "Notice", component: Notice },
-  { id: "exam", label: "Exam", component: Exam },
-  { id: "subjects", label: "Subjects", component: Subjects },
-  { id: "admin", label: "Admin", component: Admin },
+  { id: "home", label: "Home", component: null, icon: <FiHome /> },
+  { id: "student", label: "Student", component: Student, icon: <FiUsers /> },
+  { id: "faculty", label: "Faculty", component: Faculty, icon: <FiUser /> },
+  { id: "branch", label: "Branch", component: Branch, icon: <FiBookmark /> },
+  { id: "notice", label: "Notice", component: Notice, icon: <FiBell /> },
+  { id: "exam", label: "Exam", component: Exam, icon: <FiAward /> },
+  { id: "subjects", label: "Subjects", component: Subjects, icon: <FiBook /> },
+  { id: "admin", label: "Admin", component: Admin, icon: <FiSettings /> },
 ];
 
 const Home = () => {
@@ -31,10 +41,11 @@ const Home = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
   const [profileData, setProfileData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("userToken");
 
-  const fetchUserDetails = async () => {
+  const fetchUserDetails = useCallback(async () => {
     setIsLoading(true);
     try {
       toast.loading("Loading user details...");
@@ -58,30 +69,30 @@ const Home = () => {
       setIsLoading(false);
       toast.dismiss();
     }
-  };
+  }, [userToken, dispatch]);
 
   useEffect(() => {
     fetchUserDetails();
-  }, [dispatch, userToken]);
+  }, [fetchUserDetails]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const pathMenuId = urlParams.get("page") || "home";
     const validMenu = MENU_ITEMS.find((item) => item.id === pathMenuId);
     setSelectedMenu(validMenu ? validMenu.id : "home");
-  }, [location.pathname]);
+  }, [location.search]);
 
   const getMenuItemClass = (menuId) => {
     const isSelected = selectedMenu === menuId;
     return `
-      text-center px-6 py-3 cursor-pointer
+      flex items-center px-4 py-3 cursor-pointer
       font-medium text-sm w-full
       rounded-md
       transition-all duration-300 ease-in-out
       ${
         isSelected
-          ? "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg transform -translate-y-1"
-          : "bg-blue-50 text-blue-700 hover:bg-blue-100"
+          ? "bg-gradient-to-r from-blue-400 to-blue-600 text-white shadow-lg"
+          : "text-gray-700 hover:bg-blue-50"
       }
     `;
   };
@@ -112,20 +123,47 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto">
-        <ul className="flex justify-evenly items-center gap-10 w-full mx-auto my-8">
-          {MENU_ITEMS.map((item) => (
-            <li
-              key={item.id}
-              className={getMenuItemClass(item.id)}
-              onClick={() => handleMenuClick(item.id)}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <div
+          className={`${
+            sidebarOpen ? "w-64" : "w-20"
+          } bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col`}
+        >
+          <div
+            className="flex-1 overflow-y-auto py-2
+          "
+          >
+            {MENU_ITEMS.map((item) => (
+              <div
+                key={item.id}
+                className={getMenuItemClass(item.id)}
+                onClick={() => handleMenuClick(item.id)}
+                title={!sidebarOpen ? item.label : ""}
+              >
+                <span className={`${sidebarOpen ? "mx-3" : "mx-auto"} text-lg`}>
+                  {item.icon}
+                </span>
+                {sidebarOpen && <span>{item.label}</span>}
+              </div>
+            ))}
+          </div>
+          {/* <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            {sidebarOpen ? (
+              <FiChevronLeft size={20} />
+            ) : (
+              <FiChevronRight size={20} />
+            )}
+          </button> */}
+        </div>
 
-        {renderContent()}
+        {/* Main Content */}
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+          {renderContent()}
+        </div>
       </div>
       <Toaster position="bottom-center" />
     </>

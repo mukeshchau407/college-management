@@ -91,7 +91,7 @@ const Material = () => {
   };
 
   return (
-    <div className="w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10">
+    <div className="w-full mx-auto flex justify-center items-start flex-col mb-10">
       <Heading title="Study Materials" />
 
       {!dataLoading && (
@@ -140,7 +140,7 @@ const Material = () => {
       {dataLoading && <Loading />}
 
       {!dataLoading && (
-        <div className="w-full mt-8 overflow-x-auto">
+        <div className="w-full overflow-x-auto">
           <table className="text-sm min-w-full bg-white">
             <thead>
               <tr className="bg-blue-500 text-white">
