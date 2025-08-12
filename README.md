@@ -1,160 +1,139 @@
-# College Management System
+College Management System
+A full-stack solution built with the MERN (MongoDB, Express.js, React.js, Node.js) stack. This system streamlines academic and administrative processes by offering unified management of student and faculty data, branch/course information, notices, and more.
 
-[![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue)](https://www.mongodb.com/mern-stack)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-v14+-green)](https://nodejs.org)
-[![React](https://img.shields.io/badge/React-v17+-blue)](https://reactjs.org)
+Features
+Admin Dashboard
+Manage faculty and student profiles, including emergency contact details
 
-A comprehensive MERN stack-based College Management System that helps manage academic activities, student information, faculty details, and administrative tasks. This system streamlines the management of educational institutions by providing a centralized platform for administrators, faculty, and students.
+Create and manage academic branches and course structures
 
-## Features
+Publish notices for students and faculty
 
-### Admin Features
+Upload and administer timetables by branch and semester
 
-- Manage faculty accounts with detailed profiles and emergency contacts
-- Manage student accounts with enrollment numbers and academic details
-- Manage academic branches
-- Handle subject/course management by semester and branch
-- Generate and manage notices for students and faculty
-- Upload and manage timetables by branch and semester
-- Profile management and password updates
+Update profile and password management
 
-### Faculty Features
+Faculty Portal
+View and update personal profile and emergency contact
 
-- View and manage personal profile with emergency contacts
-- Upload and manage study materials (notes, assignments, syllabus)
-- Filter and organize materials by subject, semester, and type
-- Upload and manage timetables for their branches
-- Search and view student information by enrollment, name, or semester
-- View and respond to notices
-- Update profile and credentials
-- Password management and reset functionality
+Upload and categorize study materials (notes, assignments, syllabus) by subject, semester, and type
 
-### Student Features
+Manage timetables for branches
 
-- View personal profile and academic details
-- Access study materials filtered by subject and type
-- View class timetables with download option
-- Access notices and announcements
-- Update profile information
-- Password management and reset functionality
+Browse student information via enrollment, name, or semester search
 
-## Tech Stack
+View and respond to notices
 
-- Frontend: React.js
-- Backend: Node.js, Express.js
-- Database: MongoDB
-- Authentication: JWT
+Manage password and reset functionality
 
-## Prerequisites
+Student Interface
+Access personal profile and academic records
 
-- Node.js
-- MongoDB
-- npm
+Use filters to browse study materials
 
-## Setup Instructions
+View and download class timetables
 
-Project Setup Video Tutorial: https://youtu.be/gw4jh4RHzuo
+Receive notices and announcements
 
-Sample .env file is added in both backend and frontend, copy that variables and create `.env` in both the folders and then follow below given instructions
+Update profile and manage password reset
+
+Tech Stack
+Frontend: React.js
+
+Backend: Node.js, Express.js
+
+Database: MongoDB
+
+Authentication: JWT (JSON Web Tokens)
+
+Prerequisites
+Node.js installed
+
+MongoDB setup
+
+npm or yarn installed
+
+Getting Started
 
 1. Clone the repository:
-
-```bash
-git clone <repository-url>
-cd College-Management-System
-```
-
+   bash
+   Copy
+   Edit
+   git clone <repository-url>
+   cd college-management
 2. Install dependencies:
+   bash
+   Copy
+   Edit
 
-```bash
-# Install backend dependencies
+# Backend
+
 cd backend
 npm install
 
-# Install frontend dependencies
+# Frontend
+
 cd ../frontend
-npm install
-```
+npm install 3. Environment Variables:
+Backend (backend/.env):
 
-3. Create a `.env` file in the backend directory with the following variables:
+env
+Copy
+Edit
+MONGODB_URI=mongodb://127.0.0.1:27017/College-Management-System
+PORT=4000
+FRONTEND_API_LINK=http://localhost:3000
+JWT_SECRET=YOUR_SECRET_KEY
+NODEMAILER_EMAIL=
+NODEMAILER_PASS=
+Frontend (frontend/.env):
 
-```
-MONGODB_URI =mongodb://127.0.0.1:27017/College-Management-System
-PORT = 4000
-FRONTEND_API_LINK = http://localhost:3000
-JWT_SECRET = THISISSECRET
+env
+Copy
+Edit
+REACT_APP_APILINK=http://localhost:4000/api
+REACT_APP_MEDIA_LINK=http://localhost:4000/media 4. Start servers:
+bash
+Copy
+Edit
 
-NODEMAILER_EMAIL =
-NODEMAILER_PASS =
-```
+# In backend directory
 
-4. Create a `.env` file in the frontend directory:
-
-```env
-REACT_APP_APILINK = http://localhost:4000/api
-
-REACT_APP_MEDIA_LINK = http://localhost:4000/media
-
-```
-
-5. Start the development servers:
-
-```bash
-# Start backend server (from backend directory)
 npm run dev
 
-# Start frontend server (from frontend directory)
-npm start
-```
+# In frontend directory
 
-## Initial Setup
-
-1. Create an admin account using the seeder:
-
-```bash
+npm start 5. Seed the admin user:
+bash
+Copy
+Edit
 cd backend
 npm run seed
-```
+Default admin credentials:
 
-This will create a default admin account with the following credentials:
+Employee ID: 123456
 
-- Employee ID: 123456
-- Password: admin123
-- Email: admin@gmail.com
+Password: admin123
 
-## Project Structure
+Email: admin@gmail.com
+GitHub
 
-```
+Project Structure
+pgsql
+Copy
+Edit
 college-management-system/
 ├── backend/
-│   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middlewares/
-│   │   ├── utils/
-│   │   └── media/
-│   └── README.md
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   └── utils/
-│   └── public/
-└── README.md
-```
-
-## For Any Doubt Feel Free To Contact Me 🚀
-
-- [My Website](http://krishjotaniya.netlify.app/)
-- [Linkedin](https://www.linkedin.com/in/krishjotaniya/)
-- [krishjotaniya71@gmail.com](mailto:krishjotaniya71@gmail.com)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+│ ├── controllers/
+│ ├── models/
+│ ├── routes/
+│ ├── middlewares/
+│ ├── utils/
+│ └── media/
+└── frontend/
+├── src/
+│ ├── components/
+│ ├── pages/
+│ ├── context/
+│ └── utils/
+└── public/
