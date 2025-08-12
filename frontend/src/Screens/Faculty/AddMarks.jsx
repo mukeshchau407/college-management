@@ -274,14 +274,14 @@ const AddMarks = () => {
   }, [selectedSemester]);
 
   return (
-    <div className="w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10">
+    <div className="w-full mx-auto flex justify-center items-start flex-col mb-10">
       <div className="flex justify-between items-center w-full">
         <Heading title="Add Marks" />
       </div>
 
       {showSearch && (
-        <div className="w-full bg-white rounded-lg p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto">
+        <div className="w-full rounded-lg my-6 lg:flex lg:flex-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Semester
@@ -374,9 +374,9 @@ const AddMarks = () => {
               )}
             </div>
           </div>
-
-          <div className="mt-6 flex justify-center w-[10%] mx-auto">
-            <CustomButton
+          <div className="mt-7">
+            <button
+              className="px-4 py-2 rounded-md font-medium text-sm transition-all duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center bg-blue-500 text-white hover:bg-blue-600 sm:w-full"
               type="submit"
               disabled={
                 dataLoading ||
@@ -389,7 +389,7 @@ const AddMarks = () => {
               onClick={handleSearch}
             >
               {dataLoading ? "Searching..." : "Search"}
-            </CustomButton>
+            </button>
           </div>
         </div>
       )}

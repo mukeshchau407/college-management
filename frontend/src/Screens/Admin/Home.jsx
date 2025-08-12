@@ -123,47 +123,24 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen pt-16">
         {/* Sidebar */}
-        <div
-          className={`${
-            sidebarOpen ? "w-64" : "w-20"
-          } bg-white shadow-lg transition-all duration-300 ease-in-out flex flex-col`}
-        >
-          <div
-            className="flex-1 overflow-y-auto py-2
-          "
-          >
+        <div className="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 border-r bg-white z-40 overflow-y-auto">
+          <div className="flex-1 py-2">
             {MENU_ITEMS.map((item) => (
               <div
                 key={item.id}
                 className={getMenuItemClass(item.id)}
                 onClick={() => handleMenuClick(item.id)}
-                title={!sidebarOpen ? item.label : ""}
               >
-                <span className={`${sidebarOpen ? "mx-3" : "mx-auto"} text-lg`}>
-                  {item.icon}
-                </span>
-                {sidebarOpen && <span>{item.label}</span>}
+                <span className="text-2xl mx-3">{item.icon}</span>
+                <span>{item.label}</span>
               </div>
             ))}
           </div>
-          {/* <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-          >
-            {sidebarOpen ? (
-              <FiChevronLeft size={20} />
-            ) : (
-              <FiChevronRight size={20} />
-            )}
-          </button> */}
         </div>
-
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
-          {renderContent()}
-        </div>
+        <div className="flex-1 ml-64 p-6 bg-gray-50">{renderContent()}</div>
       </div>
       <Toaster position="bottom-center" />
     </>

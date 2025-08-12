@@ -99,7 +99,7 @@ const StudentFinder = () => {
   };
 
   return (
-    <div className="w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10">
+    <div className="w-full mx-auto flex justify-center items-start flex-col">
       <div className="flex justify-between items-center w-full">
         <Heading title="Student Finder" />
       </div>
@@ -280,7 +280,7 @@ const StudentFinder = () => {
                 </CustomButton>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-8 mb-8">
+              <div className="flex flex-col md:flex-row gap-8">
                 <div className="w-full md:w-1/3">
                   <img
                     src={`${process.env.REACT_APP_MEDIA_LINK}/${selectedStudent.profile}`}
