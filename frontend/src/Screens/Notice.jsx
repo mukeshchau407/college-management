@@ -9,6 +9,7 @@ import axiosWrapper from "../utils/AxiosWrapper";
 import CustomButton from "../components/CustomButton";
 import DeleteConfirm from "../components/DeleteConfirm";
 import Loading from "../components/Loading";
+import EventCalendar from "./EventCalender";
 
 const Notice = () => {
   const router = useLocation();
@@ -155,6 +156,10 @@ const Notice = () => {
               <IoMdAdd className="text-2xl" />
             </CustomButton>
           )}
+      </div>
+
+      <div className="w-full">
+        <EventCalendar notices={notices} />
       </div>
 
       {dataLoading && <Loading />}

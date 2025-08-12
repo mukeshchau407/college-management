@@ -267,7 +267,7 @@ const Faculty = () => {
   };
 
   return (
-    <div className="w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10 relative">
+    <div className="w-full mx-auto flex justify-center items-start flex-col mb-10 relative">
       <div className="flex justify-between items-center w-full">
         <Heading title="Faculty Management" />
         <CustomButton

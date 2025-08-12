@@ -41,7 +41,6 @@ const Home = () => {
   const [selectedMenu, setSelectedMenu] = useState("home");
   const [profileData, setProfileData] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const dispatch = useDispatch();
   const userToken = localStorage.getItem("userToken");
 
