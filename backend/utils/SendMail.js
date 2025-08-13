@@ -1,3 +1,4 @@
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const sendResetMail = async (email, resetToken, type) => {
@@ -11,7 +12,7 @@ const sendResetMail = async (email, resetToken, type) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: process.env.NODEMAILER_EMAIL,
       to: email,
       subject: "Password Reset Request",
       html: `
