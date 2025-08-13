@@ -27,6 +27,8 @@ const Notice = () => {
     description: "",
     type: "student",
     link: "",
+    startDate: "",
+    endDate: "",
   });
 
   useEffect(() => {
@@ -71,6 +73,8 @@ const Notice = () => {
       description: "",
       type: "student",
       link: "",
+      startDate: "",
+      endDate: "",
     });
     setShowAddModal(true);
   };
@@ -82,15 +86,17 @@ const Notice = () => {
       description: notice.description || "",
       type: notice.type || "student",
       link: notice.link || "",
+      startDate: notice.startDate || "",
+      endDate: notice.endDate || "",
     });
     setShowAddModal(true);
   };
 
   const handleSubmitNotice = async (e) => {
     e.preventDefault();
-    const { title, description, type } = formData;
+    const { title, description, type, startDate, endDate } = formData;
 
-    if (!title || !description || !type) {
+    if (!title || !description || !type || !startDate || !endDate) {
       toast.dismiss();
       toast.error("Please fill all the fields");
       return;
@@ -291,6 +297,49 @@ const Notice = () => {
                   }
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Notice Date & Time
+                </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Date Picker */}
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">
+                      Start Date & Time
+                    </label>
+                    <input
+                      type="datetime-local"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      value={formData.startDate || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, startDate: e.target.value })
+                      }
+                    />
+                  </div>
+
+                  {/* End Date (optional) */}
+                  <div>
+                    <label className="block text-xs text-gray-500 mb-1">
+                      End Date & Time (Optional)
+                    </label>
+                    <input
+                      type="datetime-local"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      value={formData.endDate || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, endDate: e.target.value })
+                      }
+                      min={formData.startDate} // Ensures end date isn't before start date
+                    />
+                  </div>
+                </div>
+
+                {/* Helper text */}
+                <p className="mt-1 text-xs text-gray-500">
+                  Select the notice period. End date is optional for one-time
+                  notices.
+                </p>
               </div>
 
               <div>
