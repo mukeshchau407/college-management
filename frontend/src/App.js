@@ -10,6 +10,8 @@ import ForgetPassword from "./Screens/ForgetPassword";
 import UpdatePassword from "./Screens/UpdatePassword";
 import MainLayout from "./Screens/UI/MainLayout";
 import Home from "./Screens/UI/Home";
+import About from "./Screens/UI/About";
+import Contact from "./Screens/UI/Contact";
 
 const App = () => {
   return (
@@ -17,7 +19,11 @@ const App = () => {
       <Provider store={mystore}>
         <Router>
           <Routes>
-            <Route path="/" element={<MainLayout />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="contact" element={<Contact />} />
+            </Route>
 
             <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgetPassword />} />

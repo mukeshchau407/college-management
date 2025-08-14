@@ -9,7 +9,6 @@ import {
 import { MdComputer, MdLibraryBooks } from "react-icons/md";
 
 const About = () => {
-  // College statistics
   const stats = [
     {
       value: "50+",

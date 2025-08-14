@@ -8,10 +8,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative w-full h-[95vh] overflow-hidden">
+      <div className="relative w-full h-[100vh] md:h-[95vh] overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-white z-10" />
         <div className="relative z-20 container mx-auto px-4 py-12 md:py-24 h-[90vh] flex items-center">
-          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 w-full">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-6 mt-12 md:mt-0 md:gap-12 w-full">
             <div className="md:w-1/2 space-y-4 text-white text-center md:text-left">
               <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 text-3xl text-red-500">
                 <FaGraduationCap />
