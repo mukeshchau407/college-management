@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 const Footer = () => {
   const linkSections = [
@@ -27,8 +26,8 @@ const Footer = () => {
       title: "Support",
       links: [
         { name: "Help Desk", path: "/help-desk" },
-        { name: "Student Portal", path: "/student-portal" },
-        { name: "Faculty Login", path: "/faculty-login" },
+        { name: "Student Portal", path: "/login" },
+        { name: "Faculty Login", path: "/login" },
         { name: "Privacy Policy", path: "/privacy-policy" },
         { name: "FAQs", path: "/faqs" },
       ],
@@ -39,7 +38,7 @@ const Footer = () => {
     <footer className="px-6 md:px-16 lg:px-24 xl:px-32 bg-gray-50 border-t border-gray-300/40">
       <div className="flex flex-col md:flex-row sm:flex-col items-start justify-between gap-10 pt-10 mb-5 text-gray-700">
         <div>
-          <img className="w-14 h-10 mb-4" src={logo} alt="College Logo" />
+          <img className="w-14 h-10 mb-4" src="" alt="College Logo" />
           <p className="max-w-[410px] text-md leading-relaxed">
             Welcome to Everest College. Empowering students and faculty with a
             seamless academic experience through modern digital solutions.

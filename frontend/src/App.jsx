@@ -16,12 +16,18 @@ import Subject from "./Screens/Admin/Subject";
 import Branch from "./Screens/Admin/Branch";
 import Profile from "./Screens/Profile";
 import UploadMarks from "./Screens/Faculty/UploadMarks";
+import MainLayout from "./Screens/UI/MainLayout";
+import Home from "./Screens/UI/Home";
+import About from "./Screens/UI/About";
 
 const App = () => {
   return (
     <Router>
       <Toaster position="top-center" reverseOrder={false} />
       <Routes>
+        <Route path="/" element={<MainLayout />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

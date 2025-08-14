@@ -24,7 +24,7 @@ const Navbar = () => {
           <span className="mr-2">
             <RxDashboard />
           </span>{" "}
-          {router.state && router.state.type} Dashboard
+          {router.state && router.state.type} PathSala
         </p>
         <CustomButton variant="danger" onClick={logouthandler}>
           Logout

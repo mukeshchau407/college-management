@@ -1,0 +1,12 @@
+@startuml
+
+enum Gender { male, female, other }
+
+enum Status { active, inactive }
+
+enum BloodGroup { A+, A-, B+, B-, AB+, AB-, O+, O- }
+
+enum ExamType { midterm, final, quiz }
+
+
+@enduml

@@ -8,6 +8,8 @@ import FacultyHome from "./Screens/Faculty/Home";
 import AdminHome from "./Screens/Admin/Home";
 import ForgetPassword from "./Screens/ForgetPassword";
 import UpdatePassword from "./Screens/UpdatePassword";
+import MainLayout from "./Screens/UI/MainLayout";
+import Home from "./Screens/UI/Home";
 
 const App = () => {
   return (
@@ -15,12 +17,15 @@ const App = () => {
       <Provider store={mystore}>
         <Router>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<MainLayout />} />
+
+            <Route path="/login" element={<Login />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
             <Route
               path="/:type/update-password/:resetId"
               element={<UpdatePassword />}
             />
+
             <Route path="student" element={<StudentHome />} />
             <Route path="faculty" element={<FacultyHome />} />
             <Route path="admin" element={<AdminHome />} />
