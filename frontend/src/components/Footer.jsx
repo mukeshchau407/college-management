@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo1 from "../assets/logo1.png";
 
 const Footer = () => {
   const linkSections = [
@@ -35,10 +36,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="px-6 md:px-16 lg:px-24 xl:px-32 bg-gray-50 border-t border-gray-300/40">
+    <footer className="px-5 sm:px-14 bg-gray-50 border-t border-gray-300/40">
       <div className="flex flex-col md:flex-row sm:flex-col items-start justify-between gap-10 pt-10 mb-5 text-gray-700">
         <div>
-          <img className="w-14 h-10 mb-4" src="" alt="College Logo" />
+          <img className="w-14 h-14 mb-4" src={logo1} alt="College Logo" />
           <p className="max-w-[410px] text-md leading-relaxed">
             Welcome to Everest College. Empowering students and faculty with a
             seamless academic experience through modern digital solutions.

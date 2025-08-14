@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo1 from "../assets/logo1.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,13 +13,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-sm shadow-gray-300 py-2 top-0 z-50 sticky">
-      <div className="max-w-6xl mx-auto">
+    <nav className="bg-white shadow-sm shadow-gray-300 top-0 z-50 sticky">
+      <div className="px-4 sm:px-14">
         <div className="flex justify-between">
-          <div>
+          <div className="mr-36">
             {/* Website Logo */}
-            <a href="#" className="flex items-center py-4 px-2">
-              <span className="font-bold text-red-600 text-2xl">PathShala</span>
+            <a href="#" className="flex items-center py-4">
+              <img src={logo1} alt="logo" className="h-[56px] w-[56]" />
             </a>
           </div>
           {/* Primary Nav - mapped from array */}
