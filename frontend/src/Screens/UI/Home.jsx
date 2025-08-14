@@ -21,7 +21,7 @@ const Home = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-black ">
-                Welcome to Our Awesome Hamro Pathsala
+                Welcome to Hamro Pathsala
               </h1>
               <p className="text-base sm:text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
                 Discover amazing features and services that will transform your
