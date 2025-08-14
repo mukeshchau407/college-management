@@ -25,9 +25,9 @@ const Navbar = () => {
           {/* Primary Nav - mapped from array */}
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.id}
-                href={link.path}
+                to={link.path}
                 className={`font-semibold transition duration-300 ${
                   link.isActive
                     ? "text-red-500 border-b-2 border-red-500"
@@ -35,7 +35,7 @@ const Navbar = () => {
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 

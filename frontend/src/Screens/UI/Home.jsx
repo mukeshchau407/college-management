@@ -1,6 +1,7 @@
 import { FaArrowRight, FaGraduationCap } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Service from "./Service";
+import bgImage from "../../assets/bgimage.png";
 
 const Home = () => {
   const navigate = useNavigate(); // Initialize the navigate function
@@ -20,7 +21,7 @@ const Home = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-black ">
-                Welcome to Our Awesome Website
+                Welcome to Our Awesome Hamro Pathsala
               </h1>
               <p className="text-base sm:text-lg text-gray-600 max-w-lg mx-auto md:mx-0">
                 Discover amazing features and services that will transform your
@@ -38,7 +39,7 @@ const Home = () => {
               </div>
             </div>
             <div>
-              <img src="" alt="" />
+              <img src={bgImage} alt="bgimage" className="h-74" />
             </div>
           </div>
         </div>
