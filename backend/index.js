@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 connectToMongo();
-const port = 4000 || process.env.PORT;
+const port = process.env.PORT || 4000;
 var cors = require("cors");
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_API_LINK,
+    origin: process.env.FRONTEND_API_LINK || "https://college-management-sigma-pearl.vercel.app/",
   })
 );
 
