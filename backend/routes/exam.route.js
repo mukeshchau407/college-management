@@ -7,7 +7,7 @@ const {
 } = require("../controllers/exam.controller");
 const auth = require("../middlewares/auth.middleware");
 const router = express.Router();
-const upload = require("../middlewares/multer.middleware");
+const upload = require("../middlewares/upload.middleware");
 
 router.get("/", auth, getAllExamsController);
 router.post("/", auth, upload.single("file"), addExamController);

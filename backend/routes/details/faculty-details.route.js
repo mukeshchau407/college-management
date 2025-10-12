@@ -11,7 +11,7 @@ const {
   updateFacultyPasswordHandler,
   updateLoggedInPasswordController,
 } = require("../../controllers/details/faculty-details.controller");
-const upload = require("../../middlewares/multer.middleware");
+const upload = require("../../middlewares/upload.middleware");
 const auth = require("../../middlewares/auth.middleware");
 
 router.post("/register", upload.single("file"), registerFacultyController);

@@ -12,7 +12,7 @@ const {
   searchStudentsController,
   updateLoggedInPasswordController,
 } = require("../../controllers/details/student-details.controller");
-const upload = require("../../middlewares/multer.middleware");
+const upload = require("../../middlewares/upload.middleware");
 const auth = require("../../middlewares/auth.middleware");
 
 router.post("/register", upload.single("file"), registerStudentController);
