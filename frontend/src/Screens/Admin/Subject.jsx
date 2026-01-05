@@ -123,7 +123,11 @@ const Subject = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to save subject. Please try again."
+      );
     } finally {
       setDataLoading(false);
     }
@@ -184,7 +188,11 @@ const Subject = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to delete subject. Please try again."
+      );
     } finally {
       setDataLoading(false);
     }

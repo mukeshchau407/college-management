@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { toast } from "react-hot-toast";
 import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
@@ -33,9 +33,9 @@ const Exam = () => {
 
   useEffect(() => {
     getExamsHandler();
-  }, []);
+  }, [getExamsHandler]);
 
-  const getExamsHandler = async () => {
+  const getExamsHandler = useCallback(async () => {
     try {
       setDataLoading(true);
       let link = "/exam";
@@ -63,7 +63,7 @@ const Exam = () => {
     } finally {
       setDataLoading(false);
     }
-  };
+  }, [userData]);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -120,7 +120,11 @@ const Exam = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to save exam. Please try again."
+      );
     } finally {
       setProcessLoading(false);
     }
@@ -179,7 +183,11 @@ const Exam = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to delete exam. Please try again."
+      );
     }
   };
 

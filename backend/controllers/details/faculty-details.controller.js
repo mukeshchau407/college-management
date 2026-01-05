@@ -50,7 +50,7 @@ const generateEmployeeId = () => {
 const registerFacultyController = async (req, res) => {
   try {
     const { email, phone } = req.body;
-    const profile = req.file.filename;
+    const profile = req.file ? req.file.filename : null;
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return ApiResponse.badRequest("Invalid email format").send(res);
@@ -71,12 +71,17 @@ const registerFacultyController = async (req, res) => {
 
     const employeeId = generateEmployeeId();
 
-    const user = await facultyDetails.create({
+    const facultyData = {
       ...req.body,
       employeeId,
-      profile,
       password: "faculty123",
-    });
+    };
+
+    if (profile) {
+      facultyData.profile = profile;
+    }
+
+    const user = await facultyDetails.create(facultyData);
 
     const sanitizedUser = await facultyDetails
       .findById(user._id)

@@ -52,18 +52,23 @@ const getAllDetailsController = async (req, res) => {
 
 const registerStudentController = async (req, res) => {
   try {
-    const profile = req.file.filename;
+    const profile = req.file ? req.file.filename : null;
 
     const enrollmentNo = Math.floor(100000 + Math.random() * 900000);
     const email = `${enrollmentNo}@gmail.com`;
 
-    const user = await studentDetails.create({
+    const studentData = {
       ...req.body,
-      profile,
       password: "student123",
       email,
       enrollmentNo,
-    });
+    };
+    
+    if (profile) {
+      studentData.profile = profile;
+    }
+
+    const user = await studentDetails.create(studentData);
 
     const sanitizedUser = await studentDetails
       .findById(user._id)

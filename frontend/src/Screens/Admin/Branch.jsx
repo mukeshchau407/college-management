@@ -90,7 +90,11 @@ const Branch = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to save branch. Please try again."
+      );
     }
   };
 
@@ -132,7 +136,11 @@ const Branch = () => {
       }
     } catch (error) {
       toast.dismiss();
-      toast.error(error.response.data.message);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Failed to delete branch. Please try again."
+      );
     }
   };
 
