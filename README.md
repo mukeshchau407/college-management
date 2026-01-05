@@ -95,6 +95,3 @@ college-management/
     └── public/
 
 
-
-If you want, I can also **add GitHub badges, screenshots, and demo GIFs** to make it more attractive for visitors. That way, the repo will stand out instantly.
-```
