@@ -31,10 +31,6 @@ const Exam = () => {
   const [processLoading, setProcessLoading] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
 
-  useEffect(() => {
-    getExamsHandler();
-  }, [getExamsHandler]);
-
   const getExamsHandler = useCallback(async () => {
     try {
       setDataLoading(true);
@@ -64,6 +60,10 @@ const Exam = () => {
       setDataLoading(false);
     }
   }, [userData]);
+
+  useEffect(() => {
+    getExamsHandler();
+  }, [getExamsHandler]);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
