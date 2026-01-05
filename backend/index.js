@@ -6,11 +6,18 @@ connectToMongo();
 const port = process.env.PORT || 4000;
 var cors = require("cors");
 
+const frontendOrigin = (process.env.FRONTEND_API_LINK)
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_API_LINK || "https://college-management-sigma-pearl.vercel.app/",
+    origin: frontendOrigin,
+    methods:["GET","POST","DELETE","OPTIONS"],
+    allowedHeaders:["Content-Type","Authorization"],
+    credentials: true,
   })
 );
+
+app.options("*", cors());
 
 app.use(express.json()); //to convert request data to json
 
