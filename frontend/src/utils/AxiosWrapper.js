@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseApiURL } from "../baseUrl";
 const axiosWrapper = axios.create({
-  baseURL: `${baseApiURL()}/api`,
+  baseURL: `${baseApiURL().replace(/\/$/, "")}/api`,
   withCredentials: true,
 });
 
