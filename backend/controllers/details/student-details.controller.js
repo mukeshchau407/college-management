@@ -63,7 +63,7 @@ const registerStudentController = async (req, res) => {
       email,
       enrollmentNo,
     };
-    
+
     if (profile) {
       studentData.profile = profile;
     }

@@ -82,7 +82,7 @@ const registerAdminController = async (req, res, next) => {
       employeeId,
       password: "admin123",
     };
-    
+
     if (profile) {
       adminData.profile = profile;
     }
