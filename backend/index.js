@@ -6,13 +6,13 @@ connectToMongo();
 const port = process.env.PORT || 4000;
 var cors = require("cors");
 
-const frontendOrigin = (process.env.FRONTEND_API_LINK)
+const frontendOrigin = process.env.FRONTEND_API_LINK;
 
 app.use(
   cors({
     origin: frontendOrigin,
-    methods:["GET","POST","DELETE","OPTIONS"],
-    allowedHeaders:["Content-Type","Authorization"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
