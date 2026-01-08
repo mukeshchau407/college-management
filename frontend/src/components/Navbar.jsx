@@ -11,7 +11,7 @@ const Navbar = () => {
   const logouthandler = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userType");
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="max-w-7xl flex justify-between items-center mx-auto">
         <p
           className="font-semibold text-2xl flex justify-center items-center cursor-pointer"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/admin")}
         >
           <span className="mr-2">
             <RxDashboard />
